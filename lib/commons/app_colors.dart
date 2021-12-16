@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 abstract class IAppColors {
-  /// 主色板
   MaterialColor get primarySwatch;
 }
 

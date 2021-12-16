@@ -19,6 +19,8 @@ class ApiRepositoryImpl implements ApiRepository {
       return YanEntity.fromJson(resp);
     } on NetworkException catch (e) {
       throw(RepositoryException(e.message));
+    } catch (e) {
+      throw(RepositoryException(e.toString()));
     }
   }
 }

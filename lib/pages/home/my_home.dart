@@ -1,4 +1,4 @@
-import 'package:basic_getx_project/controller/count_controller.dart';
+import 'package:basic_getx_project/pages/home/my_home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,7 +7,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<CountController>();
+    final controller = Get.find<MyHomeController>();
 
     return Scaffold(
       appBar: AppBar(
@@ -21,12 +21,6 @@ class MyHomePage extends StatelessWidget {
             Text(
               'hello'.trArgs(["world"]),
             ),
-            Obx(() {
-              return Text(
-                '${controller.count}',
-                style: Theme.of(context).textTheme.headline4,
-              );
-            }),
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -35,13 +29,21 @@ class MyHomePage extends StatelessWidget {
                 TextButton(onPressed: () => controller.toggleLocale(), child: const Text("toggle language")),
               ],
             ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Obx(() {
+                return Text(
+                  controller.yan.value == null ? "Loading" : controller.yan.value!.text,
+                );
+              }),
+            ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: controller.increment,
+        onPressed: controller.refreshYan,
         tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.refresh),
       ),
     );
   }
